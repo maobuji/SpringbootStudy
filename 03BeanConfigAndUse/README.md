@@ -1,3 +1,5 @@
 采用java配置springbean
 
 提供非spring管理的类获取spring bean的方法
+
+StaticContextUtil在初始化启动时，拿到context引用。因是静态的，可以使用静态方法让其它类访问。
