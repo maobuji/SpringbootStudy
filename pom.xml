@@ -16,8 +16,9 @@
     </properties>
 
     <modules>
-        <module>01HelloWorld</module>
+        <module>01HelloWorldAndTest</module>
         <module>02AppPropertiesSwitch</module>
+        <module>03BeanConfigAndUse</module>
     </modules>
 
     <dependencyManagement>
