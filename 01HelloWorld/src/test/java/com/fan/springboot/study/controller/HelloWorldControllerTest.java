@@ -1,7 +1,9 @@
 package com.fan.springboot.study.controller;
 
 import com.fan.springboot.study.Application;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -9,17 +11,23 @@ import static org.junit.Assert.assertArrayEquals;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * Created by zhang on 2017/11/21.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
-//@SpringApplicationConfiguration(classes = Application.class)
-//@ContextConfiguration(classes=AddressBookConfiguration.class) //直接注入配置类
-
+@WebAppConfiguration
 public class HelloWorldControllerTest {
 
 
@@ -29,9 +37,11 @@ public class HelloWorldControllerTest {
     @Test
     public void sayHello() throws Exception {
 
-        String reString = helloWorldController.sayHello();
-        Assert.assertTrue("Hello,World!".equals(reString));
+        String result = helloWorldController.sayHello("user", "test");
+
+        assertArrayEquals(new String[]{"Hello,user test!"}, new String[]{result});
 
     }
 
 }
+

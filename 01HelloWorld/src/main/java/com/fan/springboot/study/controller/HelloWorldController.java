@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
 
-    @RequestMapping("/")
-    public String sayHello() {
-        return "Hello,World!";
+    @RequestMapping("/test")
+    public String sayHello(String firstName, String secondName) {
+        return "Hello," + firstName + " " + secondName + "!";
     }
 }
