@@ -1,0 +1,3 @@
+采用java配置springbean
+
+提供非spring管理的类获取spring bean的方法
