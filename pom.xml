@@ -17,6 +17,7 @@
 
     <modules>
         <module>01HelloWorld</module>
+        <module>02AppPropertiesSwitch</module>
     </modules>
 
     <dependencyManagement>
