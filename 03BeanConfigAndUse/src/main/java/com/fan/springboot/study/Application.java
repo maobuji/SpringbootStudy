@@ -15,7 +15,7 @@ public class Application {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(Application.class);
         // 可以这样用，但是不推荐
         StaticContextUtil.setApplicationContext(applicationContext);
-        Person p=(Person)StaticContextUtil.getBean("farmerPerson");
+        Person p = (Person) StaticContextUtil.getBean("farmerPerson");
         System.out.print(p.getName());
     }
 }

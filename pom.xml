@@ -19,6 +19,7 @@
         <module>01HelloWorldAndTest</module>
         <module>02AppPropertiesSwitch</module>
         <module>03BeanConfigAndUse</module>
+        <module>04RestService</module>
     </modules>
 
     <dependencyManagement>
