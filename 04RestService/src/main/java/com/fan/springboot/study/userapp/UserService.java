@@ -14,15 +14,11 @@ public class UserService {
 
     private static Map<String, User> users = new HashMap<String, User>();
 
-    public void addUser(User user){
-        users.put(user.getUserID(),user);
+    public void addUser(User user) {
+        users.put(user.getUserID(), user);
     }
 
-    public void deleteUser(String userID){
-        users.remove(userID);
-    }
-
-    public User findUser(String userID){
+    public User findUser(String userID) {
         return users.get(userID);
     }
 }

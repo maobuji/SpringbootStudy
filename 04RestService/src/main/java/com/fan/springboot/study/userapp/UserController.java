@@ -2,28 +2,45 @@ package com.fan.springboot.study.userapp;
 
 import com.fan.springboot.study.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by maobuji on 2017/11/26.
  */
 @RestController
 public class UserController {
-        @Autowired
-        UserService userService;
+    @Autowired
+    UserService userService;
 
-       @RequestMapping(value="/addUser")
-       @ResponseBody
-       public User queryUser(){
+    @RequestMapping(value = "/addUser")
+    @ResponseBody
+    public boolean addUser() {
 
-           userService.findUser()
+        User user = new User();
+        user.setUserID("1");
+        user.setUserName("fan");
+        user.setUserDesc("test user");
+        userService.addUser(user);
+        return true;
+    }
 
-           return user;
+    @RequestMapping(value = "/queryUser")
+    @ResponseBody
+    public User queryUser(String userID) {
+        return userService.findUser(userID);
+    }
 
-       }
+    @RequestMapping(value = "/findUser/{id}",method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<User> findUser(@PathVariable("id") String userID) throws Exception {
+        User result = userService.findUser(userID);
+        HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+ //       if(result == null){
+ //           throw new Exception(userID);
+ //       }
+        return new ResponseEntity<User>(result,status);
+    }
 
 }
 
