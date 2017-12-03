@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by maobuji on 2017/11/26.
+ *
+ * 展现了两种不同的处理方式 ResponseBody 和 ResponseEntity的两种不同方式的处理
  */
 @RestController
 public class UserController {
@@ -16,29 +18,23 @@ public class UserController {
 
     @RequestMapping(value = "/addUser")
     @ResponseBody
-    public boolean addUser() {
-
-        User user = new User();
-        user.setUserID("1");
-        user.setUserName("fan");
-        user.setUserDesc("test user");
+    public void addUser(@RequestBody User user) {
         userService.addUser(user);
-        return true;
     }
 
-    @RequestMapping(value = "/queryUser")
+    @RequestMapping(value = "/delUser/{id}")
     @ResponseBody
-    public User queryUser(String userID) {
-        return userService.findUser(userID);
+    public void delUser(@PathVariable("id") String userID) {
+        userService.deleteUser(userID);
     }
 
     @RequestMapping(value = "/findUser/{id}",method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<User> findUser(@PathVariable("id") String userID) throws Exception {
+        if(userID.equals("")) {
+            throw new Exception();
+        }
         User result = userService.findUser(userID);
         HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
- //       if(result == null){
- //           throw new Exception(userID);
- //       }
         return new ResponseEntity<User>(result,status);
     }
 
