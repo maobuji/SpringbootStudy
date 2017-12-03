@@ -20,6 +20,7 @@
         <module>02AppPropertiesSwitch</module>
         <module>03BeanConfigAndUse</module>
         <module>04RestService</module>
+        <module>05SpringDataJPA</module>
     </modules>
 
     <dependencyManagement>
