@@ -19,3 +19,9 @@ update：最常用
 
 validate：
     每次加载hibernate时，验证创建数据库表结构，和数据库表比较，不创建新表，会插入新值。
+
+初始化脚本配置
+spring.datasource.schema=xxxx-db.sql 可以定义你的建库文件
+spring.datasource.data=xxxx-data.sql  可以定义你的数据文件
+spring.datasource.initialize＝true|false 可以决定是不是要初始化这些数据库文件
+spring.datasource.continueOnError＝true|false 有了错误是否继续运行
